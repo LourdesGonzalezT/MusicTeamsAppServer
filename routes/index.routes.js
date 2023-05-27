@@ -1,7 +1,8 @@
-const router = require("express").Router();
+const router = require("express").Router()
 
+// QUITAR SOLO SIRVE PARA TESTEAR
 router.get("/", (req, res, next) => {
-  res.json("All good in here");
-});
+  res.json("All good in here")
+})
 
-module.exports = router;
+module.exports = router
