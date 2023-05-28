@@ -51,7 +51,7 @@ const userSchema = new Schema(
       maxlength: [500, 'Has superado el máximo de caracteres (500)'],
     },
 
-    instruments: {
+    instrument: {
       type: String,
       required: [true, 'Por favor, selecciona el instrumento que vas a practicar'],
       enum: ['Guitarra', 'Bajo', 'Violín', 'Piano', 'Batería', 'Saxofón', 'Trompeta', 'Percusión']
@@ -59,7 +59,7 @@ const userSchema = new Schema(
 
     level: {
       type: Number,
-      require: [true, 'Por favor, selecciona tu nivel de experiencia'],
+      required: [true, 'Por favor, selecciona tu nivel de experiencia'],
       enum: [1, 2, 3, 4, 5]
     },
 

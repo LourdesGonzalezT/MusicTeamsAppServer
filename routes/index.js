@@ -1,7 +1,10 @@
-// const { router } = require("../app")
+const router = require("express").Router()
 
-module.exports = app => {
-    const indexRoutes = require("./index.routes")
-    app.use("/api", indexRoutes)
-}
-// module.exports = router
+router.use('/users', require('./users.routes'))
+router.use('/venues', require('./venues.routes'))
+router.use('/events', require('./events.routes'))
+// router.use('/calendar', require('./calendar.routes'))
+// router.use('/auth', require('./auth.routes'))
+
+
+module.exports = router

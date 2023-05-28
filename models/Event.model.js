@@ -12,7 +12,7 @@ const EventSchema = new Schema(
         musicStyle: {
             type: String,
             enum: ['Rock', 'Blues', 'Flamenco', 'Latin', 'Jazz', 'Pop'],
-            required: [true, 'Por favor, indica el estilo musical que tenrá la sesión']
+            required: [true, 'Por favor, indica el estilo musical que tendrá la sesión']
         },
 
         level: {
@@ -26,12 +26,6 @@ const EventSchema = new Schema(
             default: true
         },
 
-        // state: {
-        //     type: String,
-        //     enum: ['closed', 'open'],
-        //     default: 'open'
-        // },
-
         venueEvent: {
             type: Schema.Types.ObjectId,
             ref: 'Venue'
@@ -44,17 +38,23 @@ const EventSchema = new Schema(
 
         userPlanner: {
             type: Schema.Types.ObjectId,
-            ref: 'User'
+            ref: 'User',
         },
 
         usersAssistants: [{
             type: Schema.Types.ObjectId,
-            ref: 'User'
+            ref: 'User',
+            default: []
         }]
     },
     {
         timestamps: true
     }
+    // state: {
+    //     type: String,
+    //     enum: ['closed', 'open'],
+    //     default: 'open'
+    // },
 )
 
 // DUDA GERMÁN

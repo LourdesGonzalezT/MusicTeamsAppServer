@@ -5,12 +5,13 @@ const VenueSchema = new Schema(
     {
         name: {
             type: String,
-            trim: true,
+            unique: true,
             required: [true, 'Por favor, indica el nombre de la sala'],
-            set: value => value.charAt(0).toUpperCase() + value.substring(1)
+            trim: true,
+            set: value => value.charAt(0).toUpperCase() + value.substring(1),
         },
 
-        addres: {
+        address: {
             type: String,
             trim: true,
             required: [true, 'Por favor, indica la dirección de la sala'],
@@ -19,30 +20,28 @@ const VenueSchema = new Schema(
         phone: {
             type: String,
             maxlength: [9, 'Por favor, indica un número de teléfono correcto'],
-            minlength: [8, 'Por favor, indica un número de teléfono correcto']
+            minlength: [9, 'Por favor, indica un número de teléfono correcto']
         },
 
         openingHours: {
             type: String,
+            required: [true, 'Por favor, especifica los horarios de apertura de la sala'],
         },
 
         venueImg: {
             type: String,
             default: 'https://www.sonoramajadahonda.com/wp-content/uploads/2021/03/IMG_20190409_215706_705.jpg',
         },
-
-        features: [
-            {
-                type: String,
-                enum: ['Parking', 'Aire Acondicionado', 'Alquiler de material', 'Microfonía', 'Amplificadores', 'Wifi', 'Almacén', 'Cafetería', 'Batería', 'Estudio de Grabación'],
-                defaul: [],
-
-            }
-        ],
+        // ARRAY DE ARRAYS PREGUNTAR GERMAN
+        features: [{
+            type: Array,
+            enum: ['Parking', 'Aire Acondicionado', 'Alquiler de material', 'Microfonía', 'Amplificadores', 'Wifi', 'Almacén', 'Cafetería', 'Batería', 'Estudio de Grabación'],
+            // default: [],
+        }],
 
         capacity: {
             type: Number,
-            require: [true, 'Por favor, especifica la capacidad máxima de la sala'],
+            required: [true, 'Por favor, especifica la capacidad máxima de la sala'],
         },
 
         description: {
@@ -53,6 +52,7 @@ const VenueSchema = new Schema(
         venueSchedule: {
             type: Schema.Types.ObjectId,
             ref: 'Calendar'
+            //default??? un new calendar
         },
 
         eventsList: [
