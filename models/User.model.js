@@ -16,9 +16,6 @@ const userSchema = new Schema(
 
     password: {
       type: String,
-      required: true,
-      trim: true,
-      minlength: [3, 'Tu clave no es suficientemente segura, debe tener más de 3 carácteres']
     },
 
     firstName: {
@@ -37,11 +34,11 @@ const userSchema = new Schema(
 
     role: {
       type: String,
-      enum: ['Manager', 'Musician', 'Admin'],
-      default: 'Musician'
+      enum: ['MANAGER', 'MUSICIAN', 'ADMIN'],
+      default: 'MUSICIAN'
     },
 
-    profileImg: {
+    avatar: {
       type: String,
       default: 'https://i.stack.imgur.com/l60Hf.png',
     },
@@ -99,10 +96,7 @@ const userSchema = new Schema(
     ],
 
     // CAMPOS PARA ESCALABILIDAD
-    userDiary: {
-      type: Schema.Types.ObjectId,
-      ref: 'Calendar'
-    },
+
 
     opinions: [
     ],

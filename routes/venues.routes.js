@@ -13,10 +13,10 @@ router.get('/getAllVenues', (req, res, next) => {
 
 router.post('/newVenue', (req, res, next) => {
 
-    const { name, address, phone, openingHours, venueImg, features, capacity, description, venueSchedule, userManager } = req.body
+    const { name, address, phone, openingHours, venueImg, features, capacity, description, venueSchedule, manager } = req.body
 
     Venue
-        .create({ name, address, phone, openingHours, venueImg, features, capacity, description, venueSchedule, userManager })
+        .create({ name, address, phone, openingHours, venueImg, features, capacity, description, venueSchedule, manager })
         .then(response => res.json(response))
         .catch(err => next(err))
 })

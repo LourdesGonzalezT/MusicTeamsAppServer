@@ -35,10 +35,10 @@ router.get('/getAllEvents', (req, res, next) => {
 
 router.post('/newEvent', (req, res, next) => {
 
-    const { name, musicStyle, level, usersAssistants, venueEvent, eventDate, userPlanner } = req.body
+    const { name, musicStyle, requiredExperience, assistants, venueEvent, eventDate, planner } = req.body
 
     Event
-        .create({ name, musicStyle, level, usersAssistants, venueEvent, eventDate, userPlanner })
+        .create({ name, musicStyle, requiredExperience, assistants, venueEvent, eventDate, planner })
         .then(response => res.json(response))
         .catch(err => next(err))
 })
@@ -55,11 +55,11 @@ router.get('/:event_id', (req, res, next) => {
 
 router.put('/:event_id/edit', (req, res, next) => {
 
-    const { name, musicStyle, level, usersAssistants } = req.body
+    const { name, musicStyle, requiredExperience, assistants } = req.body
     const { event_id } = req.params
 
     Event
-        .findByIdAndUpdate(event_id, { name, musicStyle, level, usersAssistants })
+        .findByIdAndUpdate(event_id, { name, musicStyle, requiredExperience, assistants })
         .then(response => res.json(response))
         .catch(err => next(err))
 })

@@ -12,10 +12,10 @@ router.get('/getAllUsers', (req, res, next) => {
 
 router.post('/newUser', (req, res, next) => {
 
-    const { email, password, firstName, lastName, profileImg, aboutMe, instrument, level, userDiary } = req.body
+    const { email, password, firstName, lastName, avatar, aboutMe, instrument, level, userDiary } = req.body
 
     User
-        .create({ email, password, firstName, lastName, profileImg, aboutMe, instrument, level, userDiary })
+        .create({ email, password, firstName, lastName, avatar, aboutMe, instrument, level, userDiary })
         .then(response => res.json(response))
         .catch(err => next(err))
 
@@ -33,11 +33,11 @@ router.get('/:user_id', (req, res, next) => {
 
 router.put('/:user_id/edit', (req, res, next) => {
 
-    const { email, role, firstName, lastName, profileImg, aboutMe, instrument, level, venueFavorites, friends } = req.body
+    const { email, role, firstName, lastName, avatar, aboutMe, instrument, level, venueFavorites, friends } = req.body
     const { user_id } = req.params
 
     User
-        .findByIdAndUpdate(user_id, { email, role, firstName, lastName, profileImg, aboutMe, instrument, level, venueFavorites, friends })
+        .findByIdAndUpdate(user_id, { email, role, firstName, lastName, avatar, aboutMe, instrument, level, venueFavorites, friends })
         .then(response => res.json(response))
         .catch(err => next(err))
 })

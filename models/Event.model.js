@@ -15,7 +15,7 @@ const EventSchema = new Schema(
             required: [true, 'Por favor, indica el estilo musical que tendrá la sesión']
         },
 
-        level: {
+        requiredExperience: {
             type: Number,
             enum: [1, 2, 3, 4, 5],
             required: [true, 'Por favor, indica el nivel de experiencia recomendado para los componentes de la sesión']
@@ -32,16 +32,15 @@ const EventSchema = new Schema(
         },
 
         eventDate: {
-            type: Schema.Types.ObjectId,
-            ref: 'Calendar'
+            type: Date
         },
 
-        userPlanner: {
+        planner: {
             type: Schema.Types.ObjectId,
             ref: 'User',
         },
 
-        usersAssistants: [{
+        assistants: [{
             type: Schema.Types.ObjectId,
             ref: 'User',
             default: []
@@ -57,15 +56,15 @@ const EventSchema = new Schema(
     // },
 )
 
-// DUDA GERMÁN
-EventSchema.pre('save', async function (next) {
-    const User = mongoose.model('User')
-    const userAssistantsCount = await User.countDocuments({ _id: { $in: this.usersAssistants } })
-    if (userAssistantsCount === this.capacity) {
-        this.open = false;
-    }
-    next()
-})
+// // DUDA GERMÁN
+// EventSchema.pre('save', async function (next) {
+//     const User = mongoose.model('User')
+//     const assistantsCount = await User.countDocuments({ _id: { $in: this.usersAssistants } })
+//     if (assistantsCount === this.capacity) {
+//         this.open = false;
+//     }
+//     next()
+// })
 
 const Event = mongoose.model('Event', EventSchema)
 
