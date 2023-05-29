@@ -3,7 +3,7 @@ const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 
 const User = require('./../models/User.model')
-// const { isAuthenticated } = require("../middlewares/verifyToken.middleware")
+const { isAuthenticated } = require("../middlewares/verifyToken.middleware")
 const saltRounds = 10
 
 router.post('/signup', (req, res, next) => {
@@ -64,9 +64,9 @@ router.post('/login', (req, res, next) => {
 
             if (bcrypt.compareSync(password, foundUser.password)) {
 
-                const { _id, email, firstName, avatar } = foundUser;
+                const { _id, email, firstName, avatar, role } = foundUser;
 
-                const payload = { _id, email, firstName, avatar }
+                const payload = { _id, email, firstName, avatar, role }
 
                 const authToken = jwt.sign(
                     payload,
@@ -84,15 +84,11 @@ router.post('/login', (req, res, next) => {
         .catch(err => next(err));
 })
 
-
-
-// router.get('/verify', isAuthenticated, (req, res, next) => {
-
-//     console.log('EL USUARIO TIENE UN TOKEN CORRECTO Y SUS DATOS SON', req.payload)
-
-//     setTimeout(() => {
-//         res.status(200).json(req.payload)
-//     }, 1500)
-// })
+router.get('/verify', isAuthenticated, (req, res, next) => {
+    console.log('EL USUARIO TIENE UN TOKEN CORRECTO Y SUS DATOS SON', req.payload)
+    setTimeout(() => {
+        res.status(200).json(req.payload)
+    }, 1500)
+})
 
 module.exports = router
