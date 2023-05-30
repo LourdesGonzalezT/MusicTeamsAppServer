@@ -40,7 +40,7 @@ const userSchema = new Schema(
 
     avatar: {
       type: String,
-      default: 'https://i.stack.imgur.com/l60Hf.png',
+      default: '{https://res.cloudinary.com/duewvq0qa/image/upload/v1685439940/jaagt9jzd154emhmfncj.jpg}',
     },
 
     aboutMe: {
