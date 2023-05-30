@@ -1,56 +1,21 @@
 const router = require('express').Router()
+const {
+    getAllUsers,
+    newUser,
+    userDetails,
+    userEdit,
+    userDelete
+} = require('./../controllers/user.controllers')
 
-const User = require('./../models/User.model')
+router.get('/getAllUsers', getAllUsers)
 
-router.get('/getAllUsers', (req, res, next) => {
+router.post('/newUser', newUser)
 
-    User
-        .find()
-        .then(response => res.json(response))
-        .catch(err => next(err))
-})
+router.get('/:user_id', userDetails)
 
-router.post('/newUser', (req, res, next) => {
+router.put('/:user_id/edit', userEdit)
 
-    const { email, password, firstName, lastName, profileImg, aboutMe, instrument, level, userDiary } = req.body
-
-    User
-        .create({ email, password, firstName, lastName, profileImg, aboutMe, instrument, level, userDiary })
-        .then(response => res.json(response))
-        .catch(err => next(err))
-
-})
-
-router.get('/:user_id', (req, res, next) => {
-
-    const { user_id } = req.params
-
-    User
-        .findById(user_id)
-        .then(response => res.json(response))
-        .catch(err => next(err))
-})
-
-router.put('/:user_id/edit', (req, res, next) => {
-
-    const { email, role, firstName, lastName, profileImg, aboutMe, instrument, level, venueFavorites, friends } = req.body
-    const { user_id } = req.params
-
-    User
-        .findByIdAndUpdate(user_id, { email, role, firstName, lastName, profileImg, aboutMe, instrument, level, venueFavorites, friends })
-        .then(response => res.json(response))
-        .catch(err => next(err))
-})
-
-router.delete('/:user_id/delete', (req, res, next) => {
-
-    const { user_id } = req.params
-
-    User
-        .findByIdAndDelete(user_id)
-        .then(response => res.json(response))
-        .catch(err => next(err))
-})
+router.delete('/:user_id/delete', userDelete)
 
 module.exports = router
 

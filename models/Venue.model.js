@@ -34,7 +34,7 @@ const VenueSchema = new Schema(
         },
         // ARRAY DE ARRAYS PREGUNTAR GERMAN
         features: [{
-            type: Array,
+            type: String,
             enum: ['Parking', 'Aire Acondicionado', 'Alquiler de material', 'Microfonía', 'Amplificadores', 'Wifi', 'Almacén', 'Cafetería', 'Batería', 'Estudio de Grabación'],
             // default: [],
         }],
@@ -49,19 +49,13 @@ const VenueSchema = new Schema(
             maxlength: [1000, 'Has superado el máximo de caracteres (1000)'],
         },
 
-        venueSchedule: {
-            type: Schema.Types.ObjectId,
-            ref: 'Calendar'
-            //default??? un new calendar
-        },
-
         eventsList: [
             {
                 type: Schema.Types.ObjectId, ref: 'Event'
             }
         ],
 
-        userManager: {
+        manager: {
             type: Schema.Types.ObjectId,
             ref: 'User'
         },
