@@ -22,14 +22,14 @@ const userSchema = new Schema(
       type: String,
       trim: true,
       required: [true, 'Por favor, indica tu nombre'],
-      set: value => value.charAt(0).toUpperCase() + value.substring(1)
+      // set: value => value.charAt(0).toUpperCase() + value.substring(1)
     },
 
     lastName: {
       type: String,
       trim: true,
       required: [true, 'Por favor, indica tu apellido'],
-      set: value => value.charAt(0).toUpperCase() + value.substring(1)
+      // set: value => value.charAt(0).toUpperCase() + value.substring(1)
     },
 
     role: {
