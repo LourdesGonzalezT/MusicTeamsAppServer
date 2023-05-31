@@ -8,7 +8,7 @@ const VenueSchema = new Schema(
             unique: true,
             required: [true, 'Por favor, indica el nombre de la sala'],
             trim: true,
-            set: value => value.charAt(0).toUpperCase() + value.substring(1),
+            // set: value => value.charAt(0).toUpperCase() + value.substring(1),
         },
 
         address: {
