@@ -1,4 +1,5 @@
 const router = require('express').Router()
+const { isAuthenticated } = require("../middlewares/verifyToken.middleware")
 
 const {
     getAllVenues,
@@ -11,7 +12,7 @@ const {
 
 router.get('/getAllVenues', getAllVenues)
 
-router.post('/newVenue', newVenue)
+router.post('/newVenue', isAuthenticated, newVenue)
 
 router.get('/:venue_id', venueDetails)
 
