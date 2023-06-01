@@ -5,6 +5,7 @@ const getAllUsers = (req, res, next) => {
 
     User
         .find()
+        // TODO: PROYECTAR
         .then(response => res.json(response))
         .catch(err => next(err))
 }
@@ -48,7 +49,8 @@ const userDelete = (req, res, next) => {
 
     User
         .findByIdAndDelete(user_id)
-        .then(response => res.json(response))
+        .then(() => res.sendStatus(204))
+        // TODO: REVIUSAR OTRAS OPCIONES RESOLUBLES CON SENDSTATUS
         .catch(err => next(err))
 }
 

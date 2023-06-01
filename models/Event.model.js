@@ -40,6 +40,10 @@ const EventSchema = new Schema(
             ref: 'User',
         },
 
+        maxPlaces: {
+            type: Number
+        },
+
         assistants: [{
             type: Schema.Types.ObjectId,
             ref: 'User',

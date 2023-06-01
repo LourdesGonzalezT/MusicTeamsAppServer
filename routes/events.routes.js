@@ -1,4 +1,5 @@
 const router = require('express').Router()
+const { isAuthenticated } = require("../middlewares/verifyToken.middleware")
 
 const {
     getOpenEvents,
@@ -17,7 +18,7 @@ router.get('/getClosedEvents', getClosedEvents)
 
 router.get('/getAllEvents', getAllEvents)
 
-router.post('/newEvent', newEvent)
+router.post('/newEvent', isAuthenticated, newEvent)
 
 router.get('/:event_id', eventDetails)
 

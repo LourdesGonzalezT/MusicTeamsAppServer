@@ -10,10 +10,9 @@ const getAllVenues = (req, res, next) => {
 
 const newVenue = (req, res, next) => {
 
-    console.log(req.body)
-
     const { name, address, phone, openingHours, venueImg, features, capacity, description } = req.body
     const { _id: manager } = req.payload
+
     Venue
         .create({ name, address, phone, openingHours, venueImg, features, capacity, description, manager })
         .then(response => res.json(response))
@@ -40,6 +39,7 @@ const venueEdit = (req, res, next) => {
         .then(response => res.json(response))
         .catch(err => next(err))
 }
+
 const venueDelete = (req, res, next) => {
 
     const { venue_id } = req.params

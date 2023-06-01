@@ -33,10 +33,11 @@ const getAllEvents = (req, res, next) => {
 
 const newEvent = (req, res, next) => {
 
-    const { name, musicStyle, requiredExperience, assistants, venueEvent, eventDate, planner } = req.body
+    const { name, musicStyle, requiredExperience, assistants, venueEvent, eventDate, maxPlaces } = req.body
+    const { _id: planner } = req.payload
 
     Event
-        .create({ name, musicStyle, requiredExperience, assistants, venueEvent, eventDate, planner })
+        .create({ name, musicStyle, requiredExperience, assistants, venueEvent, eventDate, maxPlaces, planner })
         .then(response => res.json(response))
         .catch(err => next(err))
 }
