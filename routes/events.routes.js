@@ -8,7 +8,8 @@ const {
     newEvent,
     eventDetails,
     eventEdit,
-    eventDelete
+    eventDelete,
+    eventAddAssistants
 
 } = require('./../controllers/event.controllers')
 
@@ -25,5 +26,7 @@ router.get('/:event_id', eventDetails)
 router.put('/:event_id/edit', eventEdit)
 
 router.delete('/:event_id/delete', eventDelete)
+
+router.put('/:event_id/edit/:user_id', eventAddAssistants)
 
 module.exports = router

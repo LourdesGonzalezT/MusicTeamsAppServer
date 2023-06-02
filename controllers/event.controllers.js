@@ -73,6 +73,17 @@ const eventDelete = (req, res, next) => {
         .catch(err => next(err))
 }
 
+const eventAddAssistants = (req, res, next) => {
+
+    const { event_id } = req.params
+    const { user_id } = req.params
+
+    Event
+        .findByIdAndUpdate(event_id, { $addToSet: { assistants: user_id } })
+        .then(response => res.json(response))
+        .catch(err => next(err))
+}
+
 module.exports = {
     getOpenEvents,
     getClosedEvents,
@@ -80,5 +91,6 @@ module.exports = {
     newEvent,
     eventDetails,
     eventEdit,
-    eventDelete
+    eventDelete,
+    eventAddAssistants
 }
