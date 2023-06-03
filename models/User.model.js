@@ -1,4 +1,6 @@
 const { Schema, model } = require("mongoose")
+const bcrypt = require('bcryptjs')
+const jwt = require('jsonwebtoken')
 
 const userSchema = new Schema(
   {
@@ -16,6 +18,8 @@ const userSchema = new Schema(
 
     password: {
       type: String,
+      require: [true, 'Por favor, indica una contraseña'],
+      minlength: [2, 'Por favor, introduce una contraseña de más de 2 caracteres']
     },
 
     firstName: {
@@ -112,6 +116,40 @@ const userSchema = new Schema(
     timestamps: true
   }
 )
+
+userSchema.pre('save', function (next) {
+
+  const saltRounds = 10
+  const salt = bcrypt.genSaltSync(saltRounds)
+  const hashedPassword = bcrypt.hashSync(this.password, salt)
+  this.password = hashedPassword
+
+  next()
+})
+
+userSchema.methods.signToken = function () {
+  const { _id, email, firstName, lastName, avatar, role, instrument, level, aboutMe, eventsCreated, eventsAssisted, venuesCreated, venueFavorites, friends } = this
+  const payload = { _id, email, firstName, lastName, avatar, role, instrument, level, aboutMe, eventsCreated, eventsAssisted, venuesCreated, venueFavorites, friends }
+
+  const authToken = jwt.sign(
+    payload,
+    process.env.TOKEN_SECRET,
+    { algorithm: 'HS256', expiresIn: "6h" }
+  )
+
+  return authToken
+}
+
+userSchema.methods.validatePassword = function (candidatePassword) {
+  return bcrypt.compareSync(candidatePassword, this.password)
+}
+
+
+// jwt.sign(
+//   payload,
+//   process.env.TOKEN_SECRET,
+//   { algorithm: 'HS256', expiresIn: "6h" }
+// )
 
 const User = model("User", userSchema)
 

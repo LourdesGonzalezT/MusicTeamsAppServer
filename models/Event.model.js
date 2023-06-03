@@ -28,7 +28,8 @@ const EventSchema = new Schema(
 
         venueEvent: {
             type: Schema.Types.ObjectId,
-            ref: 'Venue'
+            ref: 'Venue',
+            required: [true, 'Por favor, indica la sala']
         },
 
         eventDate: {
@@ -53,11 +54,6 @@ const EventSchema = new Schema(
     {
         timestamps: true
     }
-    // state: {
-    //     type: String,
-    //     enum: ['closed', 'open'],
-    //     default: 'open'
-    // },
 )
 
 // // DUDA GERMÁN

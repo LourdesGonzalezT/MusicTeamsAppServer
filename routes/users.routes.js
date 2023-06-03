@@ -6,7 +6,10 @@ const {
     userEdit,
     userDelete,
     userAddVenue,
-    userAddFriend
+    userAddFriend,
+    userAssitEvent,
+    userChangeRole
+
 } = require('./../controllers/user.controllers')
 
 router.get('/getAllUsers', getAllUsers)
@@ -23,6 +26,9 @@ router.put('/:user_id/addVenueFavorite/:venue_id', userAddVenue)
 
 router.put('/:user_id/addFriend/:friend_id', userAddFriend)
 
+router.put('/:user_id/assitEvent/:event_id', userAssitEvent)
+
+router.put('/:user_id/changeRole', userChangeRole)
 
 module.exports = router
 

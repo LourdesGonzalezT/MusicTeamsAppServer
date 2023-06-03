@@ -77,6 +77,25 @@ const userAddFriend = (req, res, next) => {
         .catch(err => next(err))
 }
 
+const userAssitEvent = (req, res, next) => {
+    const { user_id } = req.params
+    const { event_id } = req.params
+
+    User
+        .findByIdAndUpdate(user_id, { $addToSet: { eventsAssisted: event_id } })
+        .then(response => res.json(response))
+        .catch(err => next(err))
+}
+
+const userChangeRole = (req, res, next) => {
+    const { user_id } = req.params
+    const { role } = req.body
+
+    User
+        .findByIdAndUpdate(user_id, { role })
+        .then(response => res.json(response))
+        .catch(err => next(err))
+}
 
 
 module.exports = {
@@ -86,5 +105,7 @@ module.exports = {
     userEdit,
     userDelete,
     userAddVenue,
-    userAddFriend
+    userAddFriend,
+    userAssitEvent,
+    userChangeRole
 }

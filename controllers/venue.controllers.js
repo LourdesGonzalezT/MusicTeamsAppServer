@@ -1,4 +1,5 @@
 const Venue = require('./../models/Venue.model')
+const User = require('./../models/User.model')
 
 const getAllVenues = (req, res, next) => {
 
@@ -15,6 +16,12 @@ const newVenue = (req, res, next) => {
 
     Venue
         .create({ name, address, phone, openingHours, venueImg, features, capacity, description, manager })
+        .then(venue => {
+            const venue_id = venue._id
+            return Promise.all([
+                User.findByIdAndUpdate(manager, { $addToSet: { venuesCreated: venue_id } }),
+            ])
+        })
         .then(response => res.json(response))
         .catch(err => next(err))
 }
@@ -25,6 +32,7 @@ const venueDetails = (req, res, next) => {
 
     Venue
         .findById(venue_id)
+        .populate('manager')
         .then(response => res.json(response))
         .catch(err => next(err))
 }
