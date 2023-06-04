@@ -11,11 +11,15 @@ const getAllVenues = (req, res, next) => {
 
 const newVenue = (req, res, next) => {
 
-    const { name, address, phone, openingHours, venueImg, features, capacity, description } = req.body
+    const { name, address, phone, openingHours, venueImg, features, capacity, description, latitud, longitud } = req.body
     const { _id: manager } = req.payload
+    const location = {
+        type: address,
+        coordinates: [latitud, longitud]
+    }
 
     Venue
-        .create({ name, address, phone, openingHours, venueImg, features, capacity, description, manager })
+        .create({ name, address, phone, openingHours, venueImg, features, capacity, description, manager, location })
         .then(venue => {
             const venue_id = venue._id
             return Promise.all([
