@@ -47,7 +47,7 @@ const venueEdit = (req, res, next) => {
     const { venue_id } = req.params
 
     Venue
-        .findByIdAndUpdate(venue_id, { name, address, phone, openingHours, venueImg, features, capacity, description })
+        .findByIdAndUpdate(venue_id, { name, address, phone, openingHours, venueImg, features, capacity, description }, { new: true })
         .then(response => res.json(response))
         .catch(err => next(err))
 }

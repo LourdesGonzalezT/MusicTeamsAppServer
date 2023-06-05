@@ -41,7 +41,7 @@ const userEdit = (req, res, next) => {
     const { user_id } = req.params
 
     User
-        .findByIdAndUpdate(user_id, { email, role, firstName, lastName, avatar, aboutMe, instrument, level, venueFavorites, friends })
+        .findByIdAndUpdate(user_id, { email, role, firstName, lastName, avatar, aboutMe, instrument, level, venueFavorites, friends }, { new: true })
         .then(response => res.json(response))
         .catch(err => next(err))
 }
@@ -62,7 +62,7 @@ const userAddVenue = (req, res, next) => {
     const { user_id } = req.params
 
     User
-        .findByIdAndUpdate(user_id, { $addToSet: { venueFavorites: venue_id } })
+        .findByIdAndUpdate(user_id, { $addToSet: { venueFavorites: venue_id } }, { new: true })
         .then(response => res.json(response))
         .catch(err => next(err))
 }
@@ -72,7 +72,7 @@ const userDeleteVenue = (req, res, next) => {
     const { user_id } = req.params
 
     User
-        .findByIdAndUpdate(user_id, { $pull: { venueFavorites: venue_id } })
+        .findByIdAndUpdate(user_id, { $pull: { venueFavorites: venue_id } }, { new: true })
         .then(response => res.json(response))
         .catch(err => next(err))
 }
@@ -82,7 +82,17 @@ const userAddFriend = (req, res, next) => {
     const { friend_id } = req.params
 
     User
-        .findByIdAndUpdate(user_id, { $addToSet: { friends: friend_id } })
+        .findByIdAndUpdate(user_id, { $addToSet: { friends: friend_id } }, { new: true })
+        .then(response => res.json(response))
+        .catch(err => next(err))
+}
+
+const userDeleteFriend = (req, res, next) => {
+    const { user_id } = req.params
+    const { friend_id } = req.params
+
+    User
+        .findByIdAndUpdate(user_id, { $pull: { friends: friend_id } }, { new: true })
         .then(response => res.json(response))
         .catch(err => next(err))
 }
@@ -92,7 +102,7 @@ const userAssitEvent = (req, res, next) => {
     const { event_id } = req.params
 
     User
-        .findByIdAndUpdate(user_id, { $addToSet: { eventsAssisted: event_id } })
+        .findByIdAndUpdate(user_id, { $addToSet: { eventsAssisted: event_id } }, { new: true })
         .then(response => res.json(response))
         .catch(err => next(err))
 }
@@ -102,7 +112,7 @@ const userChangeRole = (req, res, next) => {
     const { role } = req.body
 
     User
-        .findByIdAndUpdate(user_id, { role })
+        .findByIdAndUpdate(user_id, { role }, { new: true })
         .then(response => res.json(response))
         .catch(err => next(err))
 }
@@ -117,6 +127,7 @@ module.exports = {
     userAddVenue,
     userDeleteVenue,
     userAddFriend,
+    userDeleteFriend,
     userAssitEvent,
     userChangeRole
 }

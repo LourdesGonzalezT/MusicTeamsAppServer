@@ -77,7 +77,7 @@ const eventEdit = (req, res, next) => {
     const { event_id } = req.params
 
     Event
-        .findByIdAndUpdate(event_id, { name, musicStyle, requiredExperience, assistants })
+        .findByIdAndUpdate(event_id, { name, musicStyle, requiredExperience, assistants }, { new: true })
         .then(response => res.json(response))
         .catch(err => next(err))
 }
@@ -100,7 +100,7 @@ const eventAddAssistants = (req, res, next) => {
     Event.findById(event_id)
         .then(event => {
             if (event.assistants.length === event.maxPlaces - 1) {
-                eventUpdatePromise = Event.findByIdAndUpdate(event_id, { open: false })
+                eventUpdatePromise = Event.findByIdAndUpdate(event_id, { open: false }, { new: true })
             }
 
             Promise.all([

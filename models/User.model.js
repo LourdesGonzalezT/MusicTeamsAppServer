@@ -128,8 +128,8 @@ userSchema.pre('save', function (next) {
 })
 
 userSchema.methods.signToken = function () {
-  const { _id, email, firstName, lastName, avatar, role, instrument, level, aboutMe, eventsCreated, eventsAssisted, venuesCreated, venueFavorites, friends } = this
-  const payload = { _id, email, firstName, lastName, avatar, role, instrument, level, aboutMe, eventsCreated, eventsAssisted, venuesCreated, venueFavorites, friends }
+  const { _id, email, firstName, avatar, role } = this
+  const payload = { _id, email, firstName, avatar, role }
 
   const authToken = jwt.sign(
     payload,
@@ -143,13 +143,6 @@ userSchema.methods.signToken = function () {
 userSchema.methods.validatePassword = function (candidatePassword) {
   return bcrypt.compareSync(candidatePassword, this.password)
 }
-
-
-// jwt.sign(
-//   payload,
-//   process.env.TOKEN_SECRET,
-//   { algorithm: 'HS256', expiresIn: "6h" }
-// )
 
 const User = model("User", userSchema)
 

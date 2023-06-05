@@ -9,7 +9,8 @@ const {
     userDeleteVenue,
     userAddFriend,
     userAssitEvent,
-    userChangeRole
+    userChangeRole,
+    userDeleteFriend
 
 } = require('./../controllers/user.controllers')
 
@@ -28,6 +29,8 @@ router.put('/:user_id/addVenueFavorite/:venue_id', userAddVenue)
 router.put('/:user_id/deleteVenueFavorite/:venue_id', userDeleteVenue)
 
 router.put('/:user_id/addFriend/:friend_id', userAddFriend)
+
+router.put('/:user_id/deleteFriend/:friend_id', userDeleteFriend)
 
 router.put('/:user_id/assitEvent/:event_id', userAssitEvent)
 
