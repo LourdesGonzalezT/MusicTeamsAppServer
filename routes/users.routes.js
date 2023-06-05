@@ -6,6 +6,7 @@ const {
     userEdit,
     userDelete,
     userAddVenue,
+    userDeleteVenue,
     userAddFriend,
     userAssitEvent,
     userChangeRole
@@ -23,6 +24,8 @@ router.put('/:user_id/edit', userEdit)
 router.delete('/:user_id/delete', userDelete)
 
 router.put('/:user_id/addVenueFavorite/:venue_id', userAddVenue)
+
+router.put('/:user_id/deleteVenueFavorite/:venue_id', userDeleteVenue)
 
 router.put('/:user_id/addFriend/:friend_id', userAddFriend)
 

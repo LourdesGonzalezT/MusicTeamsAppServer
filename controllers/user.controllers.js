@@ -67,6 +67,16 @@ const userAddVenue = (req, res, next) => {
         .catch(err => next(err))
 }
 
+const userDeleteVenue = (req, res, next) => {
+    const { venue_id } = req.params
+    const { user_id } = req.params
+
+    User
+        .findByIdAndUpdate(user_id, { $pull: { venueFavorites: venue_id } })
+        .then(response => res.json(response))
+        .catch(err => next(err))
+}
+
 const userAddFriend = (req, res, next) => {
     const { user_id } = req.params
     const { friend_id } = req.params
@@ -105,6 +115,7 @@ module.exports = {
     userEdit,
     userDelete,
     userAddVenue,
+    userDeleteVenue,
     userAddFriend,
     userAssitEvent,
     userChangeRole
