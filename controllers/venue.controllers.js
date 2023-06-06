@@ -5,6 +5,7 @@ const getAllVenues = (req, res, next) => {
 
     Venue
         .find()
+        .populate('eventsList')
         .then(response => res.json(response))
         .catch(err => next(err))
 }
@@ -62,10 +63,29 @@ const venueDelete = (req, res, next) => {
         .catch(err => next(err))
 }
 
+const checkAvailability = (req, res, next) => {
+
+    const { venue_id, requested_date } = req.params
+
+    Venue
+        .findById(venue_id)
+        .populate('eventsList')
+        .then(({ eventsList }) => {
+            const isUnavailable = eventsList.some(elm => {
+                const dateObj = new Date(requested_date)
+                const dateObj2 = new Date(elm.eventDate)
+                return dateObj2.getTime() == dateObj.getTime()
+            })
+            res.json(isUnavailable)
+        })
+        .catch(err => next(err))
+}
+
 module.exports = {
     getAllVenues,
     newVenue,
     venueDetails,
     venueEdit,
-    venueDelete
+    venueDelete,
+    checkAvailability
 }

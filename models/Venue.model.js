@@ -8,7 +8,6 @@ const VenueSchema = new Schema(
             unique: true,
             required: [true, 'Por favor, indica el nombre de la sala'],
             trim: true,
-            // set: value => value.charAt(0).toUpperCase() + value.substring(1),
         },
 
         address: {
@@ -32,11 +31,10 @@ const VenueSchema = new Schema(
             type: String,
             default: 'https://www.sonoramajadahonda.com/wp-content/uploads/2021/03/IMG_20190409_215706_705.jpg',
         },
-        // ARRAY DE ARRAYS PREGUNTAR GERMAN
+
         features: [{
             type: String,
             enum: ['Parking', 'Aire Acondicionado', 'Alquiler de material', 'Microfonía', 'Amplificadores', 'Wifi', 'Almacén', 'Cafetería', 'Batería', 'Estudio de Grabación'],
-            // default: [],
         }],
 
         capacity: {

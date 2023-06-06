@@ -53,7 +53,6 @@ const userDelete = (req, res, next) => {
     User
         .findByIdAndDelete(user_id)
         .then(() => res.sendStatus(204))
-        // TODO: REVIUSAR OTRAS OPCIONES RESOLUBLES CON SENDSTATUS
         .catch(err => next(err))
 }
 

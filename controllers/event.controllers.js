@@ -1,5 +1,6 @@
 const Event = require('./../models/Event.model')
 const User = require('./../models/User.model')
+const Venue = require('./../models/Venue.model')
 
 const getOpenEvents = (req, res, next) => {
 
@@ -52,6 +53,7 @@ const newEvent = (req, res, next) => {
             return Promise.all([
                 User.findByIdAndUpdate(planner, { $addToSet: { eventsCreated: event_id } }),
                 User.findByIdAndUpdate(planner, { $addToSet: { eventsAssisted: event_id } }),
+                Venue.findByIdAndUpdate(venueEvent, { $addToSet: { eventsList: event_id } })
             ])
         })
         .then(response => res.json(response))

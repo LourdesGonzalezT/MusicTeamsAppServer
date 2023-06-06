@@ -50,7 +50,12 @@ const login = (req, res, next) => {
         .catch(err => next(err))
 }
 
+const verify = (req, res, next) => {
+    res.json(req.payload)
+}
+
 module.exports = {
     signup,
-    login
+    login,
+    verify
 }

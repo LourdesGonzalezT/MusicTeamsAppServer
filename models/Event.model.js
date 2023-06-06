@@ -56,16 +56,6 @@ const EventSchema = new Schema(
     }
 )
 
-// // DUDA GERMÁN
-// EventSchema.pre('save', async function (next) {
-//     const User = mongoose.model('User')
-//     const assistantsCount = await User.countDocuments({ _id: { $in: this.usersAssistants } })
-//     if (assistantsCount === this.capacity) {
-//         this.open = false;
-//     }
-//     next()
-// })
-
 const Event = mongoose.model('Event', EventSchema)
 
 module.exports = Event
