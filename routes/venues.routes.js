@@ -7,7 +7,8 @@ const {
     venueDetails,
     venueEdit,
     venueDelete,
-    checkAvailability
+    checkAvailability,
+    getFilterVenuesByName
 
 } = require('./../controllers/venue.controllers')
 
@@ -22,5 +23,7 @@ router.put('/:venue_id/edit', venueEdit)
 router.delete('/:venue_id/delete', venueDelete)
 
 router.get('/:venue_id/checkAvailability/:requested_date', checkAvailability)
+
+router.get('/getFilterVenuesByName?name=${inputValue}', getFilterVenuesByName)
 
 module.exports = router

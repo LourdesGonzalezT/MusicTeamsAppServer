@@ -81,11 +81,22 @@ const checkAvailability = (req, res, next) => {
         .catch(err => next(err))
 }
 
+const getFilterVenuesByName = (req, res, next) => {
+    const name = req.query
+
+
+    Venue
+        .find()
+        .then(response => res.json(response))
+        .catch(err => next(err))
+}
+
 module.exports = {
     getAllVenues,
     newVenue,
     venueDetails,
     venueEdit,
     venueDelete,
-    checkAvailability
+    checkAvailability,
+    getFilterVenuesByName
 }
