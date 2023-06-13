@@ -16,13 +16,16 @@
   Base URL /users
 
 
-| HTTP Method | URI path         | Description                |
-| :---------- | :--------------- | :------------------------- |
-| GET         | /getAllUsers     | All Users list             |
-| POST        | /newUser         | Create new user            |
-| GET         | /:user_id        | Matching ID user details   |
-| PUT         | /:user_id/edit   | Matching ID user edition   |
-| DELETE      | /:user_id/delete | Matching ID user deletion  |
+| HTTP Method | URI path                             | Description                |
+| :---------- | :----------------------------------- | :------------------------- |
+| GET         | /getAllUsers                         | All Users list             |
+| POST        | /newUser                             | Create new user            |
+| GET         | /:user_id                            | Matching ID user details   |
+| PUT         | /:user_id/edit                       | Matching ID user edition   |
+| PUT         | /:user_id/addVenueFavorite/:venue_id | Add favorite Venue         |
+| PUT         | /:user_id/addFriend/:friend_id       | Add Friend to your Profile |
+| PUT         | /:user_id/assitEvent/:event_id       | Assit Event                |
+| DELETE      | /:user_id/changeRole                 | Change Role                |
 
 
 
@@ -43,24 +46,13 @@
   Base URL /events
 
 
-| HTTP Method | URI path          | Description                |
-| :---------- | :---------------- | :------------------------- |
-| GET         | /getOpenEvents    | Open Events list           |
-| GET         | /getClosedEvents  | Closed Events list         |
-| GET         | /getAllEvents     | All Events list            |
-| POST        | /newEvent         | Create new event           |
-| GET         | /:event_id        | Matching ID event details  |
-| PUT         | /:event_id/edit   | Matching ID event edition  |
-| DELETE      | /:event_id/delete | Matching ID event deletion |
-
-
-
-
-#### Calendar Routes
-  Base URL /calendar
-
-
-
-| HTTP Method | URI path     | Description                |
-| :---------- | :----------- | :------------------------- |
-| GET         | /getAllDates | Get all dates list         |
+| HTTP Method | URI path                    | Description                |
+| :---------- | :-------------------------- | :------------------------- |
+| GET         | /getOpenEvents              | Open Events list           |
+| GET         | /getClosedEvents            | Closed Events list         |
+| GET         | /getAllEvents               | All Events list            |
+| POST        | /newEvent                   | Create new event           |
+| GET         | /:event_id                  | Matching ID event details  |
+| PUT         | /:event_id/edit             | Matching ID event edition  |
+| PUT         | /:event_id/edit/:user_id'   | Matching ID user  edition  |
+| DELETE      | /:event_id/delete           | Matching ID event deletion |
